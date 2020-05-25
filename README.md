@@ -1,4 +1,4 @@
-# fate-app
+# Fate App
 Fate APP is a scrum poker tool, written in React, Express and Socket.io with MongoDB.
 
 ### Deploy locally using docker-compose
