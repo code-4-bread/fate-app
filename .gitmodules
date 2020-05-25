@@ -1,0 +1,8 @@
+[submodule "fate-ui"]
+	path = fate-ui
+	url = git@github.com:code-4-bread/fate-ui.git
+	branch = master
+[submodule "fate-api"]
+	path = fate-api
+	url = git@github.com:code-4-bread/fate-api.git
+	branch = master

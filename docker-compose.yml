@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: fateroot
+      MONGO_INITDB_ROOT_PASSWORD: faterootpassword
+      MONGO_INITDB_DATABASE: fateapp
+    volumes:
+      - ./data:/data/db/
+    ports:
+      - 27017:27017
+  fateapi:
+    build: ./fate-api
+    container_name: fateapi
+    ports:
+      - 8080:80
+    environment:
+      - SERVER_PORT=80
+      - MONGO_URI=mongodb://fateroot:faterootpassword@mongodb:27017/
+      - ORIGIN=*
+    stdin_open: true
+    depends_on:
+      - mongodb
+  fateapp:
+    build: ./fate-ui
+    container_name: fateapp
+    ports:
+      - 80:3000
+    environment:
+      - REACT_APP_API_URL=http://localhost:8080
+    stdin_open: true
+    depends_on:
+      - fateapi
